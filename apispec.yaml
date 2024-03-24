@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Employees RESTful API
+  description: Employees RESTful API
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+  /employees:
+    get:
+      tags:
+        - Employee API
+      description: Get All Employees
+      summary: Get All Employees
+      responses:
+        200:
+          description: Success get all employees
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Employees"
+    post:
+      tags:
+        - Employee API
+      description: Create New Employee
+      summary: Create New Employee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrUpdateEmployee"
+      responses:
+        200:
+          description: Success create employee
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/Employees"
+  /employees/{id}:
+    get:
+      tags:
+        - Employee API
+      summary: Get Employee by Id
+      description: Get Employee by Id
+      parameters:
+        - name: id
+          in: path
+          description: Employee Id
+      responses:
+        200:
+          description: Success get Category
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/Employees"
+    put:
+      tags:
+        - Employee API
+      description: Update Employee by Id
+      summary: Update Employee by Id
+      parameters:
+        - name: id
+          in: path
+          description: Employee Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrUpdateEmployee"
+      responses:
+        200:
+          description: Success Update Employee
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+                  data:
+                    $ref: "#/components/schemas/Employees"
+    delete:
+      tags:
+        - Employee API
+      summary: Delete Employee by Id
+      description: Delete Employee by Id
+      parameters:
+        - name: id
+          in: path
+          description: Employee Id
+      responses:
+        200:
+          description: Success Delete Employee
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: number
+                  message:
+                    type: string
+components:
+  schemas:
+    Employees:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        createdAt:
+          type: string
+          format: timestamp
+        updatedAt:
+          type: string
+          format: timestamp
+    CreateOrUpdateEmployee:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+

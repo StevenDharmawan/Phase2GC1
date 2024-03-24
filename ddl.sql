@@ -1,0 +1,11 @@
+CREATE DATABASE phase2_gc1;
+
+CREATE TABLE employees(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
+    updated_at TIMESTAMP,
+    UNIQUE(email)
+);
