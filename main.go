@@ -7,6 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -25,8 +26,8 @@ func main() {
 	mux.HandleFunc("GET /employees/{id}", handlers.GetById)
 	mux.HandleFunc("PUT /employees/{id}", handlers.Update)
 	mux.HandleFunc("DELETE /employees/{id}", handlers.Delete)
-	fmt.Println("Running Server on Port:8080")
-	err = http.ListenAndServe(":8080", mux)
+	fmt.Println("Running Server on Port:8081")
+	err = http.ListenAndServe(":"+os.Getenv("PORT"), mux)
 	if err != nil {
 		fmt.Println("Error Starting Server:", err.Error())
 	}
